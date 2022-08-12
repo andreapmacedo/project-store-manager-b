@@ -1,6 +1,16 @@
 const express = require('express');
+require('dotenv').config();
+// const rescue = require('./rescue');
+const productController = require('./controllers/productController');
 
 const app = express();
+
+// const routes = require('./routes');
+// app.use('/products', routes);
+
+app.use(express.json());
+app.get('/products', productController.getAll);
+app.get('/products/:id', productController.getById);
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
