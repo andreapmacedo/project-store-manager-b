@@ -17,6 +17,7 @@ const connection = mysql.createPool({
   user: MYSQL_USER || 'root',
   password: MYSQL_PASSWORD || 'password',
   database: MYSQL_DATABASE || 'processos',
+  // multipleStatements: true, // permite que sejam executados múltiplos comandos SQL
 });
 
 // const connection = mysql.createPool({
