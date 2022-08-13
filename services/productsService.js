@@ -1,13 +1,13 @@
-const productModel = require('../models/productModel');
+const productsModel = require('../models/productsModel');
 
-const getAll = async () => productModel.getAll();
+const getAll = async () => productsModel.getAll();
 
 // const getAll = async () => {
-//   return productModel.getAll();
+//   return productsModel.getAll();
 // };
 
 const getById = async (id) => {
-  const product = await productModel.getById(id);
+  const product = await productsModel.getById(id);
 
   if (!product.length) {
     return { code: 404, message: 'Product not found' };
@@ -21,7 +21,7 @@ async function create({ name }) {
   if (name.length < 5) {
     return { code: 422, error: { message: '"name" length must be at least 5 characters long' } };
   }
-  const product = await productModel.create({ name });
+  const product = await productsModel.create({ name });
   return { data: product, code: 201 };
 }
 

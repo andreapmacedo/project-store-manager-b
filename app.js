@@ -1,7 +1,8 @@
 const express = require('express');
 require('dotenv').config();
 // const rescue = require('./rescue');
-const productController = require('./controllers/productController');
+const productController = require('./controllers/productsController');
+const salesController = require('./controllers/salesController');
 
 const app = express();
 
@@ -9,9 +10,13 @@ const app = express();
 // app.use('/products', routes);
 
 app.use(express.json());
+
 app.get('/products', productController.getAll);
 app.get('/products/:id', productController.getById);
 app.post('/products', productController.create);
+
+app.get('/sales', salesController.getAll);
+app.get('/sales/:id', salesController.getById);
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
