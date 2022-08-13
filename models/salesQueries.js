@@ -15,4 +15,8 @@ function getById() {
   ].join(' ');
 }
 
-module.exports = { getAll, getById };
+function update() {
+  return 'UPDATE StoreManager.sales_products SET quantity = ? WHERE product_id = ? AND sale_id = ?';
+}
+
+module.exports = { getAll, getById, update };
