@@ -19,7 +19,7 @@ const getById = async (id) => {
 async function create({ name }) {
   if (!name) return { error: { message: '"name" is required' }, code: 400 };
   if (name.length < 5) {
-    return { code: 422, error: { message: '"name" must be at least 5 characters long' } };
+    return { code: 422, error: { message: '"name" length must be at least 5 characters long' } };
   }
   const product = await productModel.create({ name });
   return { data: product, code: 201 };
