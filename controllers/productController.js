@@ -18,16 +18,16 @@ const getById = async (req, res) => {
 };
 
 async function create(req, res) {
-  // const { data, code, error } = await productService.create(req.body);
-  const { data, code, error: { message } } = await productService.create(req.body);
+  const { data, code, error } = await productService.create(req.body);
+  // const { data, code, error: { message } } = await productService.create(req.body);
 
-  // if (error) {
-  //   return res.status(code).json(error);
-  // }
-
-  if (!data) {
-    return res.status(code).json({ message });
+  if (error) {
+    return res.status(code).json(error);
   }
+
+  // if (!data) {
+  //   return res.status(code).json({ message });
+  // }
 
   return res.status(code).json(data);
 }
