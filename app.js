@@ -14,6 +14,7 @@ app.use(express.json());
 app.get('/products', productController.getAll);
 app.get('/products/:id', productController.getById);
 app.post('/products', productController.create);
+app.put('/products/:id', productController.update);
 
 app.get('/sales', salesController.getAll);
 app.get('/sales/:id', salesController.getById);

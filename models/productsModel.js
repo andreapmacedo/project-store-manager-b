@@ -1,4 +1,5 @@
 const connection = require('./connection');
+const productsQueries = require('./productsQueries');
 
 const getAll = async () => {
   const [products] = await connection.execute('SELECT * from StoreManager.products');
@@ -17,4 +18,9 @@ const create = async ({ name }) => {
   return { id: product.insertId, name };
 };
 
-module.exports = { getAll, getById, create };
+async function update({ id, name }) {
+  await connection.execute(productsQueries.update(), [name, id]);
+  return { id, name };
+}
+
+module.exports = { getAll, getById, create, update };

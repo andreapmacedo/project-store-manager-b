@@ -32,4 +32,18 @@ async function create(req, res) {
   return res.status(code).json(data);
 }
 
-module.exports = { getAll, getById, create };
+async function update(req, res) {
+  const { data, error, code } = await productsService.update({
+    ...req.body,
+    ...req.params,
+  });
+  if (error) return res.status(code).json(error);
+  return res.status(code).json(data);
+  // const { data, error, code } = await productsService.update(req.params, req.body);
+  
+  // if (error) return res.status(code).json(error);
+  
+  // return res.status(code).json(data);
+}
+
+module.exports = { getAll, getById, create, update };

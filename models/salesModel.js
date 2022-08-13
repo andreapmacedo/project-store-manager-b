@@ -11,9 +11,4 @@ async function getById(id) {
   return sale;
 }
 
-async function update(saleId, productId, quantity) {
-  await connection.execute(salesQueries.update(), [quantity, productId, saleId]);
-  return true;
-}
-
-module.exports = { getAll, getById, update };
+module.exports = { getAll, getById };
