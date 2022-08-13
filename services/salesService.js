@@ -1,4 +1,5 @@
 const salesModel = require('../models/salesModel');
+const { exists } = require('./validations/validation');
 
 const getAll = async () => salesModel.getAll();
 
@@ -16,4 +17,13 @@ const getById = async (id) => {
   return { code: 200, data: sale };
 };
 
-module.exports = { getAll, getById };
+async function exclude(id) {
+  const product = await salesModel.getById(id);
+  
+  if (exists(product)) return { error: { message: 'Sale not found' }, code: 404 };
+  
+  const saleDelete = await salesModel.exclude(id);
+  return { data: saleDelete, code: 204 };
+}
+
+module.exports = { getAll, getById, exclude };
