@@ -41,4 +41,13 @@ async function update({ id, name }) {
   return { data: productUpdate, code: 200 };
 }
 
-module.exports = { getAll, getById, create, update };
+async function exclude(id) {
+  const product = await productsModel.getById(id);
+  
+  if (exists(product)) return { error: { message: 'Product not found' }, code: 404 };
+  
+  const productDelete = await productsModel.exclude(id);
+  return { data: productDelete, code: 204 };
+}
+
+module.exports = { getAll, getById, create, update, exclude };

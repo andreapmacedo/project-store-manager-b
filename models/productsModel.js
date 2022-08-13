@@ -23,4 +23,9 @@ async function update({ id, name }) {
   return { id, name };
 }
 
-module.exports = { getAll, getById, create, update };
+async function exclude(id) {
+  await connection.execute(productsQueries.exclude(), [id]);
+  return id;
+}
+
+module.exports = { getAll, getById, create, update, exclude };

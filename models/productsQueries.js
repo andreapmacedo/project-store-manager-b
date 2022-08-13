@@ -1,5 +1,9 @@
 function update() {
-  return 'UPDATE products SET name = ? WHERE id = ?';
+  return 'UPDATE StoreManager.products SET name = ? WHERE id = ?';
 }
 
-module.exports = { update };
+function exclude() {
+  return 'DELETE FROM StoreManager.products WHERE id = ?';
+}
+
+module.exports = { update, exclude };

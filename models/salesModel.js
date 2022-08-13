@@ -11,4 +11,15 @@ async function getById(id) {
   return sale;
 }
 
-module.exports = { getAll, getById };
+async function update(saleId, productId, quantity) {
+  await connection.execute(salesQueries.update(), [saleId, productId, quantity]);
+  return true;
+}
+
+async function exclude(id) {
+  await connection.execute(salesQueries.excludeSalesProducts(), [id]);
+  await connection.execute(salesQueries.excludeSales(), [id]);
+  return id;
+}
+
+module.exports = { getAll, getById, update, exclude };
