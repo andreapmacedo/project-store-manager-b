@@ -21,7 +21,7 @@ async function createSale() {
 }
 
 async function createSaleProduct(saleId, productId, quantity) {
-  await connection.query(salesQueries.createSaleProduct(), [saleId, productId, quantity]);
+  await connection.execute(salesQueries.createSaleProduct(), [saleId, productId, quantity]);
   return true;
 }
 // async function createSaleProduct(id, { productId, quantity }) {

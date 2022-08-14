@@ -25,10 +25,10 @@ const create = async (sales) => {
   const invalidProduct = await validation.validateProducts(sales);
   if (invalidProduct) return invalidProduct;
 
-  // const { saleId } = await salesModel.createSale();
   const saleId = await salesModel.createSale();
   await Promise.all(sales.map((sale) =>
   salesModel.createSaleProduct(saleId, sale.productId, sale.quantity)));
+  // const { saleId } = await salesModel.createSale();
   // Promise.all(
     // sales.map(async (itemSold) => {
     //   await salesModel.createSaleProduct(saleId, itemSold);

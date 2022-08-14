@@ -17,6 +17,7 @@ function getById() {
 
 function createSale() {
   return 'INSERT INTO StoreManager.sales (date) VALUES (NOW())';
+  // return 'INSERT INTO StoreManager.sales VALUES ()';
 }
 
 function createSaleProduct() {
