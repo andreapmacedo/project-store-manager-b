@@ -22,8 +22,11 @@ const create = async (sales) => {
   const invalidSale = validation.validateSale(sales);
   if (invalidSale) return invalidSale;
 
-  const invalidProduct = await validation.validateProducts(sales);
-  if (invalidProduct) return invalidProduct;
+  // const invalidProduct = await validation.validateProducts(sales);
+  // if (invalidProduct) return invalidProduct;
+
+  const invalidaProduct = await validation.validateProducts3(sales);
+  if (!invalidaProduct) return { error: { message: 'Product not found' }, code: 404 };
 
   const saleId = await salesModel.createSale();
   await Promise.all(sales.map((sale) =>
@@ -44,11 +47,6 @@ async function exclude(id) {
 async function update({ id }, sales) {
   const invalidSale = validation.validateSale(sales);
   if (invalidSale) return invalidSale;
-
-  // const invalidProduct = await validation.validateProducts(sales);
-  // if (invalidProduct) return invalidProduct;
-  // const validationProduct = await validation.validateProducts2(sales);
-  // if (validationProduct !== undefined) return validation;
 
   const invalidaProduct = await validation.validateProducts3(sales);
   if (!invalidaProduct) return { error: { message: 'Product not found' }, code: 404 };
