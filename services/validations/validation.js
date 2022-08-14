@@ -16,16 +16,6 @@ function validateSale(sales) {
   }
 }
 
-async function validateProducts(sales) {
-    const productValidation = await Promise
-    .all(sales.map((sale) => productModel.getById(sale.productId)));
-    // .all(sales.map((sale) => productModel.getByIdObjReturn(sale.productId)));
-
-  if (productValidation.includes(undefined)) {
-    return { error: { message: 'Product not found' }, code: 404 };
-  }
-}
-
 async function validateProducts3(sales) {
   let response = true;
   const productValidation = await productModel.getAll();
@@ -42,6 +32,5 @@ async function validateProducts3(sales) {
 module.exports = {
   exists,
   validateSale,
-  validateProducts,
   validateProducts3,
 };

@@ -18,10 +18,6 @@ async function getByIdObjReturn(id) {
   return { data: sale, code: 200 };
 }
 
-// const createSale = async () => {
-//   const [sale] = await connection.query(salesQueries.createSale());
-//   return { id: sale.insertId };
-// };
 async function createSale() {
       const [sale] = await connection.query(salesQueries.createSale());
   return sale.insertId;
@@ -31,10 +27,6 @@ async function createSaleProduct(saleId, productId, quantity) {
   await connection.execute(salesQueries.createSaleProduct(), [saleId, productId, quantity]);
   return true;
 }
-// async function createSaleProduct(id, { productId, quantity }) {
-//   await connection.query(salesQueries.createSaleProduct(), [id, productId, quantity]);
-//   return [];
-// }
 
 async function exclude(id) {
   await connection.execute(salesQueries.excludeSaleProduct(), [id]);
@@ -42,16 +34,8 @@ async function exclude(id) {
   return id;
 }
 
-// async function update(saleId, productId, quantity) {
-//   await connection.execute(salesQueries.update(), [saleId, productId, quantity]);
-//   return true;
-// }
-
 async function update(saleId, productId, quantity) {
-  await connection.execute(
-    'UPDATE StoreManager.sales_products SET quantity = ? WHERE product_id = ? AND sale_id = ?',
-    [quantity, productId, saleId],
-  );
+  await connection.execute(salesQueries.update(), [quantity, productId, saleId]);
   return true;
 }
 

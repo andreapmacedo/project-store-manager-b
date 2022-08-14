@@ -17,6 +17,13 @@ const getById = async (req, res) => {
   return res.status(code).json(data);
 };
 
+async function getByName(req, res) {
+  const { q } = req.query;
+  const { data, error, code } = await productsService.getByName(q);
+  if (error) return res.status(code).json(error);
+  return res.status(code).json(data);
+}
+
 async function create(req, res) {
   const { data, code, error } = await productsService.create(req.body);
   // const { data, code, error: { message } } = await productsService.create(req.body);
@@ -47,4 +54,4 @@ async function exclude(req, res) {
   return res.status(code).json(data);
 }
 
-module.exports = { getAll, getById, create, update, exclude };
+module.exports = { getAll, getById, getByName, create, update, exclude };
