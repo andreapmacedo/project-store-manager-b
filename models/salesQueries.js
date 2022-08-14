@@ -15,16 +15,32 @@ function getById() {
   ].join(' ');
 }
 
+function createSale() {
+  return 'INSERT INTO StoreManager.sales (date) VALUES (NOW())';
+}
+
+function createSaleProduct() {
+  return 'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)';
+}
+
 function update() {
   return 'UPDATE StoreManager.sales_products SET quantity = ? WHERE product_id = ? AND sale_id = ?';
 }
 
-function excludeSalesProducts() {
+function excludeSaleProduct() {
   return 'DELETE FROM StoreManager.sales_products WHERE sale_id = ?';
 }
 
-function excludeSales() {
+function excludeSale() {
   return 'DELETE FROM StoreManager.sales WHERE id = ?';
 }
 
-module.exports = { getAll, getById, update, excludeSalesProducts, excludeSales };
+module.exports = {
+  getAll,
+  getById,
+  update,
+  createSale,
+  createSaleProduct,
+  excludeSaleProduct,
+  excludeSale,
+};

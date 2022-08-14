@@ -1,5 +1,6 @@
 const salesModel = require('../models/salesModel');
 const { exists } = require('./validations/validation');
+const validation = require('./validations/validation');
 
 const getAll = async () => salesModel.getAll();
 
@@ -17,6 +18,26 @@ const getById = async (id) => {
   return { code: 200, data: sale };
 };
 
+const create = async (sales) => {
+  const invalidSale = validation.validateSale(sales);
+  if (invalidSale) return invalidSale;
+
+  const invalidProduct = await validation.validateProducts(sales);
+  if (invalidProduct) return invalidProduct;
+
+  // const { saleId } = await salesModel.createSale();
+  const saleId = await salesModel.createSale();
+  await Promise.all(sales.map((sale) =>
+  salesModel.createSaleProduct(saleId, sale.productId, sale.quantity)));
+  // Promise.all(
+    // sales.map(async (itemSold) => {
+    //   await salesModel.createSaleProduct(saleId, itemSold);
+    // }),
+  // );
+  // return { id, sales };
+  return { data: { id: saleId, itemsSold: sales }, code: 201 };
+}; 
+
 async function exclude(id) {
   const product = await salesModel.getById(id);
   
@@ -26,4 +47,4 @@ async function exclude(id) {
   return { data: saleDelete, code: 204 };
 }
 
-module.exports = { getAll, getById, exclude };
+module.exports = { getAll, getById, create, exclude };

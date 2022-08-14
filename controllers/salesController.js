@@ -1,8 +1,8 @@
 const salesService = require('../services/salesService');
 
 const getAll = async (_req, res) => {
-  const sales = await salesService.getAll();
-  res.status(200).json(sales);
+  const data = await salesService.getAll();
+  res.status(200).json(data);
 };
 
 const getById = async (req, res) => {
@@ -17,10 +17,29 @@ const getById = async (req, res) => {
   return res.status(code).json(data);
 };
 
+async function create(req, res) {
+  // const data = await salesService.create(
+  //   req.body,
+    // [
+    //   {
+    //     productId: 1,
+    //     quantity: 1,
+    //   },
+    //   {
+    //     productId: 2,
+    //     quantity: 5,
+    //   },
+    // ],
+  // );
+  const { data, error, code } = await salesService.create(req.body);
+  if (error) return res.status(code).json(error);
+  return res.status(code).json(data);
+}
+
 async function exclude(req, res) {
   const { data, error, code } = await salesService.exclude(req.params.id);
   if (error) return res.status(code).json(error);
   return res.status(code).json(data);
 }
 
-module.exports = { getAll, getById, exclude };
+module.exports = { getAll, getById, create, exclude };
