@@ -28,13 +28,7 @@ const create = async (sales) => {
   const saleId = await salesModel.createSale();
   await Promise.all(sales.map((sale) =>
   salesModel.createSaleProduct(saleId, sale.productId, sale.quantity)));
-  // const { saleId } = await salesModel.createSale();
-  // Promise.all(
-    // sales.map(async (itemSold) => {
-    //   await salesModel.createSaleProduct(saleId, itemSold);
-    // }),
-  // );
-  // return { id, sales };
+
   return { data: { id: saleId, itemsSold: sales }, code: 201 };
 }; 
 
@@ -47,4 +41,26 @@ async function exclude(id) {
   return { data: saleDelete, code: 204 };
 }
 
-module.exports = { getAll, getById, create, exclude };
+async function update({ id }, sales) {
+  const invalidSale = validation.validateSale(sales);
+  if (invalidSale) return invalidSale;
+
+  // const invalidProduct = await validation.validateProducts(sales);
+  // if (invalidProduct) return invalidProduct;
+  // const validationProduct = await validation.validateProducts2(sales);
+  // if (validationProduct !== undefined) return validation;
+
+  const invalidaProduct = await validation.validateProducts3(sales);
+  if (!invalidaProduct) return { error: { message: 'Product not found' }, code: 404 };
+
+  const saleById = await salesModel.getById(id);
+  if (!saleById.length) {
+    return { error: { message: 'Sale not found' }, code: 404 };
+  }
+
+  await Promise.all(sales.map((sale) =>
+    salesModel.update(id, sale.productId, sale.quantity)));
+  return { data: { saleId: id, itemsUpdated: sales }, code: 200 };
+}
+
+module.exports = { getAll, getById, create, exclude, update };
