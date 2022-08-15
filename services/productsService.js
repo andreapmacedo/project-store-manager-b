@@ -13,6 +13,7 @@ const getById = async (id) => {
   if (!product.length) {
     return { code: 404, message: 'Product not found' };
   }
+  
   // if (exists(product)) return { error: { message: 'Product not found' }, code: 404 };
 
   return { code: 200, data: product[0] };
