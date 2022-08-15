@@ -175,7 +175,7 @@ describe('Testa o a camada model para products', () => {
       ];
       Sinon.stub(connection, 'execute').resolves([resultExecute]);
       
-      const result = await productsModel.create();
+      const result = await productsModel.create({name: "Capa de Invisibildade"});
       expect(result).to.be.not.empty;
       expect(result).to.be.eq(undefined);
       
@@ -193,7 +193,7 @@ describe('Testa o a camada model para products', () => {
       ];
       Sinon.stub(connection, 'execute').resolves([resultExecute]);
       
-      const result = await productsModel.update();
+      const result = await productsModel.update({id: 1, name: "Martelo de Thor"});
       expect(result).to.be.not.empty;
       expect(result).to.be.eq(undefined);
       
@@ -211,7 +211,7 @@ describe('Testa o a camada model para products', () => {
       ];
       Sinon.stub(connection, 'execute').resolves([resultExecute]);
       
-      const result = await productsModel.exclude();
+      const result = await productsModel.exclude(999);
       expect(result).to.be.not.empty;
       expect(result).to.be.eq(undefined);
       

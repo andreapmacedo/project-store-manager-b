@@ -12,9 +12,9 @@ async function getById(id) {
   // return product[0];
   return product;
 }
-
+// aqui
 const create = async ({ name }) => {
-  const [product] = await connection.execute('INSERT INTO products (name) VALUES (?)',
+  const [product] = await connection.execute('INSERT INTO StoreManager.products (name) VALUES (?)',
     [name]);
   return { id: product.insertId, name };
 };

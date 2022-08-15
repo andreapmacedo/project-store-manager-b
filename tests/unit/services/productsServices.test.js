@@ -75,4 +75,42 @@ describe('product services get all', () => {
       expect(result).to.all.keys('saleId', 'date');
     })
   });
+  describe('sucesso', () => {
+    afterEach(() => { 
+      Sinon.restore();
+    })
+    // AAA - arrange, act, assert
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(productModel, 'getAll').resolves(resultExecute);
+      const result = await productService.create({ name: 'teste' });
+      expect(result).to.be.an('array');
+    });
+  });
+  describe('sucesso', () => {
+    afterEach(() => { 
+      Sinon.restore();
+    })
+    // AAA - arrange, act, assert
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(productModel, 'getAll').resolves(resultExecute);
+      const result = await productService.update({ id: 1, name: 'teste' });
+      expect(result).to.be.an('array');
+    });
+  });
+  describe('sucesso', () => {
+    afterEach(() => { 
+      Sinon.restore();
+    })
+    // AAA - arrange, act, assert
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(productModel, 'getAll').resolves(resultExecute);
+      const result = await productService.exclude(999);
+      expect(result).to.be.an('array');
+    });
+  });
+
+
 });
