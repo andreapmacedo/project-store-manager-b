@@ -106,3 +106,61 @@ describe('products model get all', () => {
   });
 
 });
+
+
+describe('Testa o a camada model para products', () => { 
+  describe('Testa a função retorna um item de acordo com o id', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    // AAA - arrange, act, assert
+    it('Testa se retorna os itens corretamente ', async function () {
+      const resultExecute = [
+        { id: 1, name: "Martelo de Thor" },
+        { id: 2, name: "Traje de encolhimento" },
+        { id: 3, name: "Escudo do Capitão América" },
+      ];
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      
+      const result = await productsModel.getById();
+      // expect(result).to.be.not.empty;
+      expect(result).to.be.a("array");
+      expect(result[0]).to.have.all.keys("id", "name");
+      expect(result[0].id).to.be.eq(1);
+      expect(result[0].name).to.be.eq("Martelo de Thor");
+      expect(result[3]).to.be.eq(undefined);
+      
+    });
+    it('Testa se um produto é adicionado corretamente ao banco de dados', async function () {
+      const resultExecute = [
+        { insertId: 4 }
+      ];
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      
+      const result = await productsModel.create();
+      expect(result).to.be.a("object");
+      expect(result).to.have.all.keys("id", "name");
+      expect(result.id).to.be.eq(4);
+      expect(result.name).to.be.eq("Capa de Invisibildade");
+    });
+    it('Testa se um produto é atualizado corretamente ao banco de dados', async function () {
+      const resultExecute = {
+        id: 4,
+        name: "Capa de Invisibildade",
+      }
+      Sinon.stub(connection, 'execute').resolves(resultExecute);
+      
+      const result = await productsModel.update();
+      expect(result).to.be.a("object");
+      expect(result).to.have.all.keys("id", "name");
+      expect(result.id).to.be.eq(4);
+      expect(result.name).to.be.eq("Capa de Invisibildade");
+    });
+    it('Testa se um produto é excluido do banco de dados', async function () {
+      Sinon.stub(connection, 'execute').resolves();      
+      const result = await productsModel.exclude();
+      expect(result).to.be.eq(2);
+    });
+  });
+
+});

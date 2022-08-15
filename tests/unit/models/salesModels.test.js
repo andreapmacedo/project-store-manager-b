@@ -109,7 +109,7 @@ describe('sales model get all', () => {
 
 
 
-describe('GET ALL', () => { 
+describe('GET BY ID', () => { 
   describe('Caso OK', () => {
 
   });
