@@ -69,6 +69,72 @@ describe('sales model get all', () => {
       expect(result).to.all.keys('saleId', 'date');
     })
   });
+  describe('sucesso', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleModel.getById(1);
+      expect(result).to.be.an('array');
+    });
+  });
+  describe('sucesso', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleModel.getByIdObjReturn(1);
+      expect(result).to.be.an('array');
+    });
+  });
+  describe('sucesso', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleModel.createSale();
+      expect(result).to.be.an('array');
+    });
+  });
+  describe('sucesso', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleModel.createSaleProduct(1,1,1);
+      expect(result).to.be.an('array');
+    });
+  });
+  describe('sucesso', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleModel.exclude(999);
+      expect(result).to.be.an('array');
+    });
+  });
+  describe('sucesso', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('retorna array', async function () {
+      const resultExecute = []
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleModel.update(999);
+      expect(result).to.be.an('array');
+    });
+  });
 
 });
 

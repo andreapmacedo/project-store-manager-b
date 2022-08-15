@@ -68,5 +68,11 @@ describe('product services get all', () => {
       const result = await productService.getAll();
       expect(result).to.all.keys('saleId', 'date');
     })
+    it('retorna array que contenha objetos com chaves saleId e date', async function () {
+
+      Sinon.stub(productModel, 'getAll').resolves(resultExecute);
+      const result = await productService.getById();
+      expect(result).to.all.keys('saleId', 'date');
+    })
   });
 });

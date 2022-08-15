@@ -5,12 +5,12 @@ const Sinon = require('sinon');
 const saleModel = require('../../../models/salesModel');
 const saleService = require('../../../services/salesService');
 
-describe('sales services get all', () => { 
-  describe('sucesso', () => {
+describe('sales services getAll and getById', () => {
+  
+  describe('testa o getAll', () => {
     afterEach(() => { 
       Sinon.restore();
     })
-    // AAA - arrange, act, assert
     it('retorna array', async function () {
       const resultExecute = []
       Sinon.stub(saleModel, 'getAll').resolves(resultExecute);
@@ -23,50 +23,86 @@ describe('sales services get all', () => {
       const result = await saleService.getAll();
       expect(result).to.be.empty;
     })
-    it('retorna array não esteja vazio', async function () {
-     const resultExecute = [
-        {
-          "saleId": 1,
-          "date": "2021-09-09T04:54:54.000Z",
-        },
-        {
-          "saleId": 1,
-          "date": "2021-09-09T04:54:29.000Z",
-        }
-      ]
-      Sinon.stub(saleModel, 'getAll').resolves(resultExecute);
-      const result = await saleService.getAll();
-      expect(result).to.be.not.empty;
+  });
+
+  describe('SALES SERVICE testa getById', () => {
+    afterEach(() => { 
+      Sinon.restore();
     })
-    it('retorna array que contenha objetos', async function () {
-     const resultExecute = [
+    it('quando não existe um produto com o ID informado', async () => {
+      const resultExecute = [];
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleService.getById(999);
+      expect(result).to.equal(null);
+    });
+
+    it('quando existe um produto com o ID informado', async () => {
+      const resultExecute = [
         {
-          "saleId": 1,
-          "date": "2021-09-09T04:54:54.000Z",
-        },
-        {
-          "saleId": 1,
-          "date": "2021-09-09T04:54:29.000Z",
+          "date": "2022-08-12T19:14:18.000Z",
+          "productId": 3,
+          "quantity": 15
         }
       ]
-      Sinon.stub(saleModel, 'getAll').resolves(resultExecute);
-      const result = await saleService.getAll();
-      expect(result).to.be.an('object');
-    })
-    it('retorna array que contenha objetos com chaves saleId e date', async function () {
-     const resultExecute = [
-        {
-          "saleId": 1,
-          "date": "2021-09-09T04:54:54.000Z",
-        },
-        {
-          "saleId": 1,
-          "date": "2021-09-09T04:54:29.000Z",
-        }
-      ]
-      Sinon.stub(saleModel, 'getAll').resolves(resultExecute);
-      const result = await saleService.getAll();
-      expect(result).to.all.keys('saleId', 'date');
+
+      sinon.stub(SalesModel, 'getById').resolves(resultExecute);
+      const result = await saleService.getById(1);
+      expect(result).not.to.be.empty;
+      expect(result).to.equal(resultExecute);
     })
   });
+  describe('SALES SERVICE testa Create', () => {
+    afterEach(() => { 
+      Sinon.restore();
+    })
+    it('quando não existe um produto com o ID informado', async () => {
+      const resultExecute = [];
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleService.create();
+      expect(result).to.equal(null);
+    });
+  });
+  describe('SALES SERVICE testa Create', () => {
+    afterEach(() => { 
+      Sinon.restore();
+    })
+    it('quando não existe um produto com o ID informado', async () => {
+      const resultExecute = [];
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleService.exclude(999);
+      expect(result).to.equal(null);
+    });
+  });
+  describe('SALES SERVICE testa Create', () => {
+    afterEach(() => { 
+      Sinon.restore();
+    })
+    it('quando não existe um produto com o ID informado', async () => {
+      const resultExecute = [];
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
+      const result = await saleService.update({ id: 999 }, []);
+      expect(result).to.equal(null);
+    });
+  });
 });
+// describe('sales services get all', () => { 
+//   describe('sucesso', () => {
+//     afterEach(() => { 
+//       Sinon.restore();
+//     })
+//     // AAA - arrange, act, assert
+//     it('retorna array', async function () {
+//       const resultExecute = []
+//       Sinon.stub(saleModel, 'getAll').resolves(resultExecute);
+//       const result = await saleService.getAll();
+//       expect(result).to.be.an('array');
+//     });
+//     it('retorna array vazio', async function () {
+//       const resultExecute = []
+//       Sinon.stub(saleModel, 'getAll').resolves(resultExecute);
+//       const result = await saleService.getAll();
+//       expect(result).to.be.empty;
+//     })
+    
+//   });
+

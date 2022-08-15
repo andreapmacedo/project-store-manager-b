@@ -163,4 +163,59 @@ describe('Testa o a camada model para products', () => {
     });
   });
 
+    describe('Testa a função retorna um item de acordo com o id', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('Testa se retorna os itens corretamente ', async function () {
+      const resultExecute = [
+        { id: 1, name: "Martelo de Thor" },
+        { id: 2, name: "Traje de encolhimento" },
+        { id: 3, name: "Escudo do Capitão América" },
+      ];
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      
+      const result = await productsModel.create();
+      expect(result).to.be.not.empty;
+      expect(result).to.be.eq(undefined);
+      
+    });
+  });
+    describe('Testa a função retorna um item de acordo com o id', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('Testa se retorna os itens corretamente ', async function () {
+      const resultExecute = [
+        { id: 1, name: "Martelo de Thor" },
+        { id: 2, name: "Traje de encolhimento" },
+        { id: 3, name: "Escudo do Capitão América" },
+      ];
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      
+      const result = await productsModel.update();
+      expect(result).to.be.not.empty;
+      expect(result).to.be.eq(undefined);
+      
+    });
+  });
+    describe('Testa a função retorna um item de acordo com o id', () => {
+    afterEach(() => {
+      Sinon.restore();
+    });
+    it('Testa se retorna os itens corretamente ', async function () {
+      const resultExecute = [
+        { id: 1, name: "Martelo de Thor" },
+        { id: 2, name: "Traje de encolhimento" },
+        { id: 3, name: "Escudo do Capitão América" },
+      ];
+      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      
+      const result = await productsModel.exclude();
+      expect(result).to.be.not.empty;
+      expect(result).to.be.eq(undefined);
+      
+    });
+  });
+
 });

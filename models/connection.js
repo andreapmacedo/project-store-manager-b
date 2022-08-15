@@ -12,11 +12,11 @@ const {
 
 // Usando o pool de conexões para evitar sobrecarga de conexões 
 const connection = mysql.createPool({
-  host: MYSQL_HOST || 'localhost',
-  port: MYSQL_PORT || 3306, // Na porta, podemos utilizar tanto string quanto número
-  user: MYSQL_USER || 'root',
-  password: MYSQL_PASSWORD || 'password',
-  database: MYSQL_DATABASE || 'StoreManager',
+  host: MYSQL_HOST, // || 'localhost',
+  port: MYSQL_PORT, // || 3306, // Na porta, podemos utilizar tanto string quanto número
+  user: MYSQL_USER, // || 'root',
+  password: MYSQL_PASSWORD, // || 'password',
+  database: MYSQL_DATABASE, // || 'StoreManager',
   // multipleStatements: true, // permite que sejam executados múltiplos comandos SQL
 });
 
