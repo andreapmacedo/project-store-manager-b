@@ -18,19 +18,6 @@ const getById = async (req, res) => {
 };
 
 async function create(req, res) {
-  // const data = await salesService.create(
-  //   req.body,
-    // [
-    //   {
-    //     productId: 1,
-    //     quantity: 1,
-    //   },
-    //   {
-    //     productId: 2,
-    //     quantity: 5,
-    //   },
-    // ],
-  // );
   const { data, error, code } = await salesService.create(req.body);
   if (error) return res.status(code).json(error);
   return res.status(code).json(data);

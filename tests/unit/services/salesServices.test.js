@@ -58,7 +58,7 @@ describe('sales services getAll and getById', () => {
     it('quando não existe um produto com o ID informado', async () => {
       const resultExecute = [];
       sinon.stub(connection, 'execute').resolves([resultExecute]);
-      const result = await saleService.create();
+      const result = await saleService.create({});
       expect(result).to.equal(null);
     });
   });
@@ -85,24 +85,4 @@ describe('sales services getAll and getById', () => {
     });
   });
 });
-// describe('sales services get all', () => { 
-//   describe('sucesso', () => {
-//     afterEach(() => { 
-//       Sinon.restore();
-//     })
-//     // AAA - arrange, act, assert
-//     it('retorna array', async function () {
-//       const resultExecute = []
-//       Sinon.stub(saleModel, 'getAll').resolves(resultExecute);
-//       const result = await saleService.getAll();
-//       expect(result).to.be.an('array');
-//     });
-//     it('retorna array vazio', async function () {
-//       const resultExecute = []
-//       Sinon.stub(saleModel, 'getAll').resolves(resultExecute);
-//       const result = await saleService.getAll();
-//       expect(result).to.be.empty;
-//     })
-    
-//   });
 
