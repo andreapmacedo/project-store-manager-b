@@ -5,7 +5,7 @@ const connection = require('../../../models/connection');
 
 const saleModel = require('../../../models/salesModel');
 
-describe('get all', () => { 
+describe('sales model get all', () => { 
   describe('sucesso', () => {
     // before(() => {
     //   const resultExecute = []

@@ -5,7 +5,7 @@ const Sinon = require('sinon');
 const saleModel = require('../../../models/salesModel');
 const saleService = require('../../../services/salesService');
 
-describe('get all', () => { 
+describe('sales services get all', () => { 
   describe('sucesso', () => {
     afterEach(() => { 
       Sinon.restore();

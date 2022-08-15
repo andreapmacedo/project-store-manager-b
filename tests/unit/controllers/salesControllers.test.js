@@ -5,7 +5,7 @@ const Sinon = require('sinon');
 const saleService = require('../../../services/salesService');
 const saleController = require('../../../controllers/salesController');
 
-describe('controller - get all', () => { 
+describe('sales controller - get all', () => { 
   describe('sucesso', () => {
     afterEach(() => { 
       Sinon.restore();
@@ -22,6 +22,8 @@ describe('controller - get all', () => {
       Sinon.stub(saleService, 'getAll').resolves(resultExecute);
       await saleController.getAll(request, response);
       expect(response.status.calledOnceWith(200)).to.be.equal(true);
+      expect(response.status.calledOnce).to.be.true;
+      // console.log(response.json.args);
     });
     it('retorna array vazio', async function () {
       const request = {};
@@ -33,7 +35,7 @@ describe('controller - get all', () => {
       const resultExecute = []
       Sinon.stub(saleService, 'getAll').resolves(resultExecute);
       await saleController.getAll(request, response);
-      expect(response.json.calledOnceWith([])).to.be.equal(true);
+      expect(response.json.calledOnceWith([])).to.be.equal(true);  
     })
     // it('retorna array não esteja vazio', async function () {
     //  const resultExecute = [
