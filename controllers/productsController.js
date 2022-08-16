@@ -32,10 +32,6 @@ async function create(req, res) {
     return res.status(code).json(error);
   }
 
-  // if (!data) {
-  //   return res.status(code).json({ message });
-  // }
-
   return res.status(code).json(data);
 }
 

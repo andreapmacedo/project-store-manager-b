@@ -1,4 +1,4 @@
-const productModel = require('../../models/productsModel');
+const productModel = require('../models/productsModel');
 
 function exists(value) {
   return (!value.length);

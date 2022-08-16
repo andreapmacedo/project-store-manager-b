@@ -1,5 +1,5 @@
 const productsModel = require('../models/productsModel');
-const { exists } = require('../routes/validations/validation');
+const { exists } = require('../validations/validation');
 
 const getAll = async () => productsModel.getAll();
 
@@ -13,8 +13,6 @@ const getById = async (id) => {
   if (!product.length) {
     return { code: 404, message: 'Product not found' };
   }
-  
-  // if (exists(product)) return { error: { message: 'Product not found' }, code: 404 };
 
   return { code: 200, data: product[0] };
 };

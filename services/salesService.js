@@ -1,12 +1,8 @@
 const salesModel = require('../models/salesModel');
-const { exists } = require('../routes/validations/validation');
-const validation = require('../routes/validations/validation');
+const { exists } = require('../validations/validation');
+const validation = require('../validations/validation');
 
 const getAll = async () => salesModel.getAll();
-
-// const getAll = async () => {
-//   return salesModel.getAll();
-// };
 
 const getById = async (id) => {
   const sale = await salesModel.getById(id);
