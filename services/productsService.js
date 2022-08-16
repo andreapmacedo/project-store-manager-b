@@ -1,5 +1,5 @@
 const productsModel = require('../models/productsModel');
-const { exists } = require('./validations/validation');
+const { exists } = require('../routes/validations/validation');
 
 const getAll = async () => productsModel.getAll();
 

@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const { describe } = require('mocha');
-const Sinon = require('sinon');
+const sinon = require('sinon');
 const connection = require('../../../models/connection');
 
 const saleModel = require('../../../models/salesModel');
@@ -8,18 +8,18 @@ const saleModel = require('../../../models/salesModel');
 describe('sales model get all', () => { 
   describe('sucesso', () => {
     afterEach(() => {
-      Sinon.restore();
+      sinon.restore();
     });
     // AAA - arrange, act, assert
     it('retorna array', async function () {
       const resultExecute = []
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.getAll();
       expect(result).to.be.an('array');
     });
     it('retorna array vazio', async function () {
       const resultExecute = []
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.getAll();
       expect(result).to.be.empty;
     })
@@ -34,7 +34,7 @@ describe('sales model get all', () => {
           "date": "2021-09-09T04:54:29.000Z",
         }
       ]
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.getAll();
       expect(result).to.be.not.empty;
     })
@@ -49,7 +49,7 @@ describe('sales model get all', () => {
           "date": "2021-09-09T04:54:29.000Z",
         }
       ]
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const [result] = await saleModel.getAll();
       expect(result).to.be.an('object');
     })
@@ -64,73 +64,73 @@ describe('sales model get all', () => {
           "date": "2021-09-09T04:54:29.000Z",
         }
       ]
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const [result] = await saleModel.getAll();
       expect(result).to.all.keys('saleId', 'date');
     })
   });
   describe('sucesso', () => {
     afterEach(() => {
-      Sinon.restore();
+      sinon.restore();
     });
     it('retorna array', async function () {
       const resultExecute = []
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.getById(1);
       expect(result).to.be.an('array');
     });
   });
   describe('sucesso', () => {
     afterEach(() => {
-      Sinon.restore();
+      sinon.restore();
     });
     it('retorna array', async function () {
       const resultExecute = []
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.getByIdObjReturn(1);
       expect(result).to.be.an('array');
     });
   });
   describe('sucesso', () => {
     afterEach(() => {
-      Sinon.restore();
+      sinon.restore();
     });
     it('retorna array', async function () {
       const resultExecute = []
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.createSale();
       expect(result).to.be.an('array');
     });
   });
   describe('sucesso', () => {
     afterEach(() => {
-      Sinon.restore();
+      sinon.restore();
     });
     it('retorna array', async function () {
       const resultExecute = []
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.createSaleProduct(1,1,1);
       expect(result).to.be.an('array');
     });
   });
   describe('sucesso', () => {
     afterEach(() => {
-      Sinon.restore();
+      sinon.restore();
     });
     it('retorna array', async function () {
       const resultExecute = []
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.exclude(999);
       expect(result).to.be.an('array');
     });
   });
   describe('sucesso', () => {
     afterEach(() => {
-      Sinon.restore();
+      sinon.restore();
     });
     it('retorna array', async function () {
       const resultExecute = []
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
       const result = await saleModel.update(999);
       expect(result).to.be.an('array');
     });

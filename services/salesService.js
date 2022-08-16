@@ -1,6 +1,6 @@
 const salesModel = require('../models/salesModel');
-const { exists } = require('./validations/validation');
-const validation = require('./validations/validation');
+const { exists } = require('../routes/validations/validation');
+const validation = require('../routes/validations/validation');
 
 const getAll = async () => salesModel.getAll();
 
